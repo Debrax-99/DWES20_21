@@ -7,24 +7,42 @@ public class Persona {
 	public char sexo;
 	
 	//CONSTRUCTOR WITH ALL PARAMETHERS:
-	public Persona(String nombre, String dni, char sexo) {
-		this.nombre = nombre;
-		this.dni = dni;
-		this.sexo = sexo;
+	public Persona(String nombre, String dni, char sexo) throws DatosNoCorrectosException {
+		this.nombre = nombre;		
+		if (Validaciones.checkDni(dni)) {
+			this.dni = dni;
+		} else {
+			throw new DatosNoCorrectosException();
+		}
+		
+		if (Validaciones.checkSexo(sexo)) {
+			this.sexo = sexo;
+		} else {
+			throw new DatosNoCorrectosException();
+		}		
+	
 	}
 	
 	//CONSTRUCTOR WITHOUT DNI:
-	public Persona(String nombre, char sexo) {
+	public Persona(String nombre, char sexo) throws DatosNoCorrectosException {
 		this.nombre = nombre;
-		this.sexo = sexo;
+		if (Validaciones.checkSexo(sexo)) {
+			this.sexo = sexo;
+		} else {
+			throw new DatosNoCorrectosException();
+		}
 	}
 	
 	//SET DNI METHOD:
 	/**
 	 * @param dni the dni to set
 	 */
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDni(String dni) throws DatosNoCorrectosException {
+		if (Validaciones.checkDni(dni)) {
+			this.dni = dni;
+		} else {
+			throw new DatosNoCorrectosException();
+		}
 	}
 	
 	//IMPRIME METHOD:
