@@ -2,22 +2,28 @@ package nomina1.laboral;
 
 public class CalculaNominas {
 
-	public static void main(String[] args) {
-		// Creamos dos empleados:
-		Empleado empleado1 = new Empleado("James Cosling", "32000032G", 'M', 4, 7);
-		Empleado empleado2 = new Empleado("Ada Lovelace", "32000031R", 'F');
+	public static void main(String[] args) throws Exception {
+		try {
+			// Creamos dos empleados:
+			Empleado empleado1 = new Empleado("James Cosling", "32000032G", 'M', 4, 7);
+			Empleado empleado2 = new Empleado("Ada Lovelace", "32000031R", 'F');
 
-		// Llamamos al método escribe:
-		escribe(empleado1, empleado2);
+			// Llamamos al método escribe:
+			escribe(empleado1, empleado2);
 
-		// Incrementamos los años trabajados del empleado2:
-		empleado2.incrAnyo();
+			// Incrementamos los años trabajados del empleado2:
+			empleado2.incrAnyo();
 
-		// Modificamos la categoría del empleado1:
-		empleado1.setCategoria(9);
-
-		// Llamamos de nuevo al método escribe:
-		escribe(empleado1, empleado2);
+			// Modificamos la categoría del empleado1:
+			empleado1.setCategoria(9);
+			
+			// Llamamos de nuevo al método escribe:
+			escribe(empleado1, empleado2);
+			
+		} catch (DatosNoCorrectosException e) {
+			e.errorMessage();
+			e.printStackTrace();
+		}		
 		
 	}
 

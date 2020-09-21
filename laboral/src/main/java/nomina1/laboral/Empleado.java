@@ -6,14 +6,23 @@ public class Empleado extends Persona {
 	public int anyo;
 
 	// CONSTRUCTOR WITH ALL PARAMETHERS:
-	public Empleado(String nombre, String dni, char sexo, int categoria, int anyo) {
+	public Empleado(String nombre, String dni, char sexo, int categoria, int anyo) throws DatosNoCorrectosException {
 		super(nombre, dni, sexo);
-		this.categoria = categoria;
-		this.anyo = anyo;
+		if (categoria < 1 || categoria > 10) {
+			throw new DatosNoCorrectosException();
+		} else {
+			this.categoria = categoria;
+		}
+		if (anyo >= 0) {
+			this.anyo = anyo;
+		} else {
+			throw new DatosNoCorrectosException();
+		}
+		
 	}
 
 	// CONSTRUCTOR WITHOUT CATEGORIA AND ANYO:
-	public Empleado(String nombre, String dni, char sexo) {
+	public Empleado(String nombre, String dni, char sexo) throws DatosNoCorrectosException {
 		super(nombre, dni, sexo);
 		this.categoria = 1;
 		this.anyo = 0;
@@ -23,8 +32,12 @@ public class Empleado extends Persona {
 	/**
 	 * @param categoria the categoria to set
 	 */
-	public void setCategoria(int categoria) {
-		this.categoria = categoria;
+	public void setCategoria(int categoria) throws DatosNoCorrectosException {
+		if (categoria < 1 || categoria > 10) {
+			throw new DatosNoCorrectosException();
+		} else {
+			this.categoria = categoria;
+		}
 	}
 
 	// GET CATEGORIA METHOD:
