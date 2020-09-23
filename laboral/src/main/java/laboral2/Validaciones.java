@@ -1,4 +1,4 @@
-package nomina1.laboral;
+package laboral2;
 
 import java.util.regex.Pattern;
 

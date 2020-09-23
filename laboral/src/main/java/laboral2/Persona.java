@@ -1,4 +1,4 @@
-package nomina1.laboral;
+package laboral2;
 
 /**
  * FP-2DAW Desarrollo Web en Entorno Servidor
@@ -16,6 +16,14 @@ public class Persona {
 	public String dni;
 	/** Género de la persona */
 	public char sexo;
+
+	/**
+	 * Constructor genérico
+	 */
+	// CONSTRUCTOR:
+	public Persona() {
+
+	}
 
 	/**
 	 * Constructor sobrecargado.
