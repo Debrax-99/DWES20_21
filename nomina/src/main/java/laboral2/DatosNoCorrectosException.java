@@ -1,4 +1,4 @@
-package nomina1.laboral;
+package laboral2;
 
 /**
  * FP-2DAW Desarrollo Web en Entorno Servidor
