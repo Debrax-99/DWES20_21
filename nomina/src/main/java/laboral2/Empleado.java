@@ -1,4 +1,4 @@
-package nomina1.laboral;
+package laboral2;
 
 /**
  * FP-2DAW Desarrollo Web en Entorno Servidor
@@ -14,6 +14,14 @@ public class Empleado extends Persona {
 	private int categoria;
 	/** Años trabajados por el empleado */
 	public int anyo;
+
+	/**
+	 * Constructor genérico.
+	 */
+	// CONSTRUCTOR:
+	public Empleado() {
+		super();
+	}
 
 	/**
 	 * Constructor sobrecargado.
