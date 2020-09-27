@@ -56,6 +56,15 @@ public class CalculaNominas {
 			// txt:
 			actualizarEmpleados(empleados);
 
+			// Creamos el File con la ruta del archivo txt donde queremos guardar los
+			// empleados:
+			System.out.println("CREANDO EL FICHERO..");
+			File salariosFile = new File(PATH_EMPLEADOS);
+
+			// Llamamos al método que calcula y escribe el sueldo de cada empleado en el
+			// archivo txt:
+			escribirSalarios(empleados);
+
 		} catch (DatosNoCorrectosException e) {
 			e.errorMessage();
 			e.printStackTrace();
@@ -72,7 +81,7 @@ public class CalculaNominas {
 	 * @throws DatosNoCorrectosException
 	 * @throws NumberFormatException
 	 */
-	// LEEREMPLEADOS METHOD:
+	// LEER EMPLEADOS METHOD:
 	private static ArrayList<Empleado> leerEmpleados(File empleadosFile)
 			throws NumberFormatException, DatosNoCorrectosException {
 		FileReader fr = null;
@@ -118,6 +127,7 @@ public class CalculaNominas {
 	 * 
 	 * @param empleados ArrayList que contiene los empleados
 	 */
+	// ACTUALIZAR EMPLEADOS METHOD:
 	private static void actualizarEmpleados(ArrayList<Empleado> empleados) {
 		FileWriter fw = null;
 		BufferedWriter bw = null;
@@ -153,20 +163,60 @@ public class CalculaNominas {
 	}
 
 	/**
-	 * Método que imprime los datos y el sueldo de dos empleados.
+	 * Método que guarda el dni y el salario de cada empleado de una lista en un
+	 * fichero txt
 	 * 
-	 * @param empleado1 el primer empleado del que se quiere saber sus datos y
-	 *                  calcular el sueldo.
-	 * @param empleado2 el segundo empleado del que se quiere saber sus datos y
-	 *                  calcular el sueldo.
+	 * @param empleados ArrayList que contiene los empleados
 	 */
-	// ESCRIBE METHOD:
-	public static void escribe(Empleado empleado1, Empleado empleado2) {
-		empleado1.imprime();
-		System.out
-				.println("El empleado " + empleado1.nombre + " gana un sueldo de " + Nomina.sueldo(empleado1) + " €.");
-		empleado2.imprime();
-		System.out
-				.println("El empleado " + empleado2.nombre + " gana un sueldo de " + Nomina.sueldo(empleado2) + " €.");
+	// ACTUALIZAR EMPLEADOS METHOD:
+	private static void escribirSalarios(ArrayList<Empleado> empleados) {
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		try {
+			System.out.println("Abriendo el fichero...");
+			fw = new FileWriter(PATH_SALARIOS);
+			bw = new BufferedWriter(fw);
+
+			System.out.println("Escribiendo el contenido...");
+
+			for (Empleado empleado : empleados) {
+				bw.write(empleado.dni + "-" + Nomina.sueldo(empleado));
+				bw.newLine();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				System.out.println("Cerrando el fichero...");
+				if (null != bw) {
+					bw.close();
+				}
+				if (null != fw) {
+					fw.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
+
+//	/**
+//	 * Método que imprime los datos y el sueldo de dos empleados.
+//	 * 
+//	 * @param empleado1 el primer empleado del que se quiere saber sus datos y
+//	 *                  calcular el sueldo.
+//	 * @param empleado2 el segundo empleado del que se quiere saber sus datos y
+//	 *                  calcular el sueldo.
+//	 */
+//	// ESCRIBE METHOD:
+//	public static void escribe(Empleado empleado1, Empleado empleado2) {
+//		empleado1.imprime();
+//		System.out
+//				.println("El empleado " + empleado1.nombre + " gana un sueldo de " + Nomina.sueldo(empleado1) + " €.");
+//		empleado2.imprime();
+//		System.out
+//				.println("El empleado " + empleado2.nombre + " gana un sueldo de " + Nomina.sueldo(empleado2) + " €.");
+//	}
 }
